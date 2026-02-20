@@ -8,7 +8,19 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticHub;
 
+
+
 public class IntakeSubsystem extends SubsystemBase {
+    public static final class Constants {
+        public static final double kOpenSpeed = 0.7; 
+        public static final double kCloseSpeed = -0.7;
+        public static final int kLeftMotorPort = 5;
+        public static final int kRightMotorPort = 6;
+        public static final int kPneumaticHubID = 1;
+        public static final int kPneumaticHubID = 1;
+        public static final int kSolenoidChannelForward = 0;
+        public static final int kSolenoidChannelReverse = 1;
+    }
 
     private Spark intakeLeftMotor = new Spark(5);
     private Spark intakeRightMotor = new Spark(6);
@@ -26,11 +38,11 @@ public class IntakeSubsystem extends SubsystemBase {
         if (open) {
             intakeLeftMotor.set(IntakeConstants.kOpenSpeed);
             intakeRightMotor.set(IntakeConstants.kOpenSpeed);
-            intakeDoubleSolenoid.set(DoubleSolenoid.Value.kForward);
+            intakeDoubleSolenoid.set(Constants.kSolenoidChannelForward);
         } else {
             intakeLeftMotor.set(IntakeConstants.kCloseSpeed);
             intakeRightMotor.set(IntakeConstants.kCloseSpeed);
-            intakeDoubleSolenoid.set(DoubleSolenoid.Value.kReverse);
+            intakeDoubleSolenoid.set(Constants.kSolenoidChannelReverse);
         }
     }
 
