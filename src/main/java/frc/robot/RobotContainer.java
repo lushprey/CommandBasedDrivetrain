@@ -27,6 +27,7 @@ public class RobotContainer {
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   private final ShooterToggleCommand shooterToggleCommand = new ShooterToggleCommand(shooterSubsystem, stick2);
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
+  private final Compressor m_compressor = new Compressor(1, PneumaticsModuleType.REVPH);
 
 
   public RobotContainer() {
