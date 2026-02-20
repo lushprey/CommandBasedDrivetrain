@@ -6,7 +6,7 @@ import frc.robot.Constants.IntakeConstants;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.PneumaticHu
+import edu.wpi.first.wpilibj.PneumaticHub;
 
 public class IntakeSubsystem extends SubsystemBase {
 

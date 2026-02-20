@@ -34,4 +34,5 @@ public class IntakeSetCmd extends CommandBase {
     public boolean isFinished() {
         return false;
     }
+    
 }
