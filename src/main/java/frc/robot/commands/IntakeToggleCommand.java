@@ -26,7 +26,7 @@ public class IntakeSetCmd extends CommandBase {
 
     @Override
     public void end(boolean interrupted) {
-        intakeSubsystem.stop();
+        intakeSubsystem.stop(); 
         System.out.println("Intake has ended");
     }
 

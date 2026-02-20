@@ -6,7 +6,8 @@ import frc.robot.Constants.IntakeConstants;
 
 public class IntakeSubsystem extends SubsystemBase {
 
-    private Spark intakeMotor = new Spark(5);
+    private Spark intakeLeftMotor = new Spark(5);
+    private Spark intakeRightMotor = new Spark(6);
 
     public IntakeSubsystem() {
     }
@@ -17,9 +18,16 @@ public class IntakeSubsystem extends SubsystemBase {
 
     public void setPosition(boolean open) {
         if (open) {
-            intakeMotor.set(IntakeConstants.kOpenSpeed);
+            intakeLeftMotor.set(IntakeConstants.kOpenSpeed);
+            intakeRightMotor.set(IntakeConstants.kOpenSpeed);
         } else {
-            intakeMotor.set(IntakeConstants.kCloseSpeed);
+            intakeLeftMotor.set(IntakeConstants.kCloseSpeed);
+            intakeRightMotor.set(IntakeConstants.kCloseSpeed);
         }
+    }
+
+    public void stop() {
+    intakeLeftMotor.set(0); // Detiene el motor por completo
+    intakeRightMotor.set(0);
     }
 }
