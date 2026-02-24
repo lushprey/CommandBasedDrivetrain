@@ -5,30 +5,34 @@ import frc.robot.subsystems.InsideSubsystem;
 
 public class InsideControlCommand extends Command {
     private final InsideSubsystem insideSubsystem;
-    private boolean bandsState = false;
-    private boolean indexerState = false;
+    private boolean bandsOn = false;
+    private boolean indexerOn = false;
 
-    public InsideControlCommand(InsideSubsystem insideSubsystem){
+    public InsideControlCommand(InsideSubsystem insideSubsystem, boolean bandsOn, boolean indexerOn){
         this.insideSubsystem = insideSubsystem;
+        this.bandsOn = bandsOn;
+        this.indexerOn = indexerOn;
         addRequirements(insideSubsystem);
     }
 
-    public void toogleBands(){
-        bandsState = !bandsState;
-        if(bandsState){
+    @Override
+    public void initialize() {
+
+        if(bandsOn){
             insideSubsystem.powerBands(0.8);
         } else {
             insideSubsystem.powerBands(0);
         }
-    }
 
-    public void toogleIndexer(){
-        indexerState = !indexerState;
-        if(indexerState){
+        if(indexerOn){
             insideSubsystem.powerIndexer(0.8);
         } else {
             insideSubsystem.powerIndexer(0);
         }
 
+    }
+    @Override
+    public boolean isFinished() {
+       return true;
     }
 }
