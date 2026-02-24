@@ -25,7 +25,7 @@ public class DrivetrainDriveCommand extends Command {
     double turn = stick.getRawAxis(4);      // Stick derecho X (giro)
     
     // Obtener valores de los triggers
-    double rightTrigger = stick.getRawAxis(3);  // Trigger derecho
+    double rightTrigger = stick.getRawAxis(3);  // Trigger derecho trwtret
     double leftTrigger = stick.getRawAxis(2);   // Trigger izquierdo
     
     // Determinar el multiplicador de velocidad basado en los triggers
