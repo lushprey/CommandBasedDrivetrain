@@ -15,6 +15,7 @@ public class Robot extends TimedRobot {
 
   public Robot() {
     m_robotContainer = new RobotContainer();
+    m_compressor.enableAnalog(90, 100);
   }
 
   @Override

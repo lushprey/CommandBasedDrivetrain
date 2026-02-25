@@ -17,6 +17,7 @@ public class DrivetrainSubsystem extends SubsystemBase{
     private final SparkMax rightBack = new SparkMax(98, MotorType.kBrushless);
     private final SparkMax leftFront = new SparkMax(97, MotorType.kBrushless);
     private final SparkMax leftBack = new SparkMax(96, MotorType.kBrushless);
+    private final Compressor m_compressor = new Compressor(1, PneumaticsModuleType.REVPH);
 
     private final DifferentialDrive drive = new DifferentialDrive(rightFront, leftFront);
     public DrivetrainSubsystem() {

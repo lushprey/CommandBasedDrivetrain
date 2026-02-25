@@ -24,7 +24,7 @@ public class IntakeSubsystem extends SubsystemBase {
         public static final int kSolenoidChannelReverse = 1;
     }
 
-    //Pneumatic Main Properties
+    //Intake Main Properties
     private final PneumaticHub m_pneumaticHub = new PneumaticHub(5);
     private Spark intakeLeftMotor = new Spark(5);
     private Spark intakeRightMotor = new Spark(6);

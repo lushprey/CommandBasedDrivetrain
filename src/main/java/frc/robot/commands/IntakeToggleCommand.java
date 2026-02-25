@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.IntakeSubsystem;
 
 public class IntakeSetCmd extends CommandBase {
+    private final Joystick stick;
 
     private final IntakeSubsystem intakeSubsystem;
     private final boolean open;
