@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.subsystems.ShooterSubsystem;
 
-public class ShooterToggleCommand extends Command {
+public class ShooterToggle extends Command {
 
     private final ShooterSubsystem shooterSubsystem;
     private final Joystick stick;
@@ -19,7 +19,7 @@ public class ShooterToggleCommand extends Command {
     private boolean lastBumperState = false;
     private int lastPOV = -1;
 
-    public ShooterToggleCommand(ShooterSubsystem shooterSubsystem, Joystick stick) {
+    public ShooterToggle(ShooterSubsystem shooterSubsystem, Joystick stick) {
         this.shooterSubsystem = shooterSubsystem;
         this.stick = stick;
         addRequirements(shooterSubsystem);

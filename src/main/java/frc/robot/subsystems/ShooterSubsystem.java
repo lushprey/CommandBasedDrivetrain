@@ -8,20 +8,24 @@ import com.revrobotics.spark.SparkLowLevel.MotorType;
 import com.revrobotics.spark.config.SparkMaxConfig;
 import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
 
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.spark.SparkClosedLoopController;
 
 public class ShooterSubsystem extends SubsystemBase{
 
-    private final SparkMax rightOut = new SparkMax(1, MotorType.kBrushless);
-    private final SparkMax rightIn = new SparkMax(2, MotorType.kBrushless);
-    private final SparkMax leftOut = new SparkMax(3, MotorType.kBrushless);
-    private final SparkMax leftIn = new SparkMax(4, MotorType.kBrushless);
+    private final SparkMax rightOut = new SparkMax(20, MotorType.kBrushless);
+    private final SparkMax rightIn = new SparkMax(21, MotorType.kBrushless);
+    private final SparkMax leftOut = new SparkMax(22, MotorType.kBrushless);
+    private final SparkMax leftIn = new SparkMax(23, MotorType.kBrushless);
 
     private final SparkClosedLoopController controllerRI = rightIn.getClosedLoopController();
     private final SparkClosedLoopController controllerRO = rightOut.getClosedLoopController();
     private final SparkClosedLoopController controllerLI = leftIn.getClosedLoopController();
     private final SparkClosedLoopController controllerLO = leftOut.getClosedLoopController();
+
+    private final Servo rightServo = new Servo(0);
+    private final Servo leftServo = new Servo(1);
     
     public ShooterSubsystem() {
         // Configurar rightFront en modo brake
@@ -43,12 +47,15 @@ public class ShooterSubsystem extends SubsystemBase{
         SparkMaxConfig leftInConfig = new SparkMaxConfig();
         leftInConfig.idleMode(IdleMode.kBrake);
         leftIn.configure(leftInConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
+        
+        rightServo.set(90);
+        leftServo.set(90);
     };
     
 
     @Override
     public void periodic(){
-
+        
     }
 
     public void setAllRPM(int RPM){
@@ -63,5 +70,10 @@ public class ShooterSubsystem extends SubsystemBase{
         rightOut.set(power);
         leftIn.set(power);
         leftOut.set(power);
+    }
+
+    public void setServos(int angle){
+        rightServo.set(angle);
+        leftServo.set(angle);
     }
 }

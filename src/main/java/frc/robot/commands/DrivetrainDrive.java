@@ -4,11 +4,11 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.wpilibj.Joystick;
 
-public class DrivetrainDriveCommand extends Command {
+public class DrivetrainDrive extends Command {
     private final Joystick stick;
     private final DrivetrainSubsystem drivetrainSubsystem;
     
-    public DrivetrainDriveCommand(DrivetrainSubsystem drivetrainSubsystem, Joystick stick){
+    public DrivetrainDrive(DrivetrainSubsystem drivetrainSubsystem, Joystick stick){
         this.drivetrainSubsystem = drivetrainSubsystem;
         this.stick = stick;
         addRequirements(drivetrainSubsystem);

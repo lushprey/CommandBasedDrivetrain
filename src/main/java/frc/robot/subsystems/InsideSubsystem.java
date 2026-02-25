@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 public class InsideSubsystem extends SubsystemBase{
 
     private final SparkMax bands = new SparkMax(55, MotorType.kBrushless);
-    private final SparkMax indexer = new SparkMax(55, MotorType.kBrushless);
+    private final SparkMax indexer = new SparkMax(56, MotorType.kBrushless);
     
     
     public InsideSubsystem() {
