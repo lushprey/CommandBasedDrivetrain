@@ -47,16 +47,26 @@ public class RobotContainer {
   public RobotContainer() {
     configureBindings();
   }
+
+  // STICK 1 (Driver)
+  // Axis Y: Forward/Back
+  // Axis X: Turn
+  // Btn 1: Auto align (AprilTag)
+
+  // STICK 2 (Operator)
+  // Btn 1: Intake toggle
+  // Btn 2: Shooter toggle
+
   private void configureBindings() {
     //Desactivados temporalmente
     CommandScheduler.getInstance().setDefaultCommand(drivetrainSubsystem, drivetrainDrive);
 
     //Elegir entre manual y auto
-    CommandScheduler.getInstance().setDefaultCommand(shooterSubsystem, shooterAlign);
-    //CommandScheduler.getInstance().setDefaultCommand(shooterSubsystem, shooterManualControl);
+    //CommandScheduler.getInstance().setDefaultCommand(shooterSubsystem, shooterAlign);
+    CommandScheduler.getInstance().setDefaultCommand(shooterSubsystem, shooterManualControl);
 
     //Elegir entre tuning y pid
-    new JoystickButton(stick1, 1).toggleOnTrue(drivetrainTagAlign);
+    //new JoystickButton(stick1, 1).toggleOnTrue(drivetrainTagAlign);
     //new JoystickButton(stick1, 1).toggleOnTrue(drivetrainTagAlignPIDTunning);
 
     CommandScheduler.getInstance().setDefaultCommand(insideSubsystem, insideControl);
