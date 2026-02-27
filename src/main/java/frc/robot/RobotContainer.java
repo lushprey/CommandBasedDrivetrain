@@ -13,6 +13,7 @@ import frc.robot.commands.DrivetrainTagAlign;
 import frc.robot.commands.DrivetrainTagAlignPIDTunning;
 import frc.robot.commands.ShooterAlign;
 import frc.robot.commands.ShooterManualControl;
+import frc.robot.commands.ShooterManualControlTuning;
 import frc.robot.commands.InsideControl;
 import frc.robot.commands.IntakeToggle;
 import frc.robot.commands.ShooterToggle;
@@ -42,7 +43,7 @@ public class RobotContainer {
   private final ShooterManualControl shooterManualControl = new ShooterManualControl(shooterSubsystem, stick2);
   //private final DrivetrainTagAlign drivetrainTagAlign = new DrivetrainTagAlign(drivetrainSubsystem, cameraSubsystem);
   //private final DrivetrainTagAlignPIDTunning drivetrainTagAlignPIDTunning = new DrivetrainTagAlignPIDTunning(drivetrainSubsystem, cameraSubsystem);
-
+  private final ShooterManualControlTuning shooterManualControlTuning  = new ShooterManualControlTuning(shooterSubsystem, stick2);
 
   public RobotContainer() {
     configureBindings();
@@ -66,7 +67,8 @@ public class RobotContainer {
 
     //Elegir entre manual y auto
     //CommandScheduler.getInstance().setDefaultCommand(shooterSubsystem, shooterAlign);
-    CommandScheduler.getInstance().setDefaultCommand(shooterSubsystem, shooterManualControl);
+    //CommandScheduler.getInstance().setDefaultCommand(shooterSubsystem, shooterManualControl);
+    CommandScheduler.getInstance().setDefaultCommand(shooterSubsystem, shooterManualControlTuning);
 
     //Elegir entre tuning y pid
     //new JoystickButton(stick1, 1).toggleOnTrue(drivetrainTagAlign);
