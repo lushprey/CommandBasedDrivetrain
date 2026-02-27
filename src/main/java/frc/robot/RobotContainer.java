@@ -31,17 +31,17 @@ public class RobotContainer {
   private final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
   private final ShooterSubsystem shooterSubsystem = new ShooterSubsystem();
   private final IntakeSubsystem intakeSubsystem = new IntakeSubsystem();
-  private final CameraSubsystem cameraSubsystem = new CameraSubsystem();
+  //private final CameraSubsystem cameraSubsystem = new CameraSubsystem();
   private final InsideSubsystem insideSubsystem = new InsideSubsystem();
 
   private final DrivetrainDrive drivetrainDrive = new DrivetrainDrive(drivetrainSubsystem, stick1);
   private final ShooterToggle shooterToggle = new ShooterToggle(shooterSubsystem, stick2);
   private final IntakeToggle intakeToggle = new IntakeToggle(intakeSubsystem);
-  private final ShooterAlign shooterAlign = new ShooterAlign(shooterSubsystem, cameraSubsystem);
+  //private final ShooterAlign shooterAlign = new ShooterAlign(shooterSubsystem, cameraSubsystem);
   private final InsideControl insideControl = new InsideControl(insideSubsystem, stick2);
   private final ShooterManualControl shooterManualControl = new ShooterManualControl(shooterSubsystem, stick2);
-  private final DrivetrainTagAlign drivetrainTagAlign = new DrivetrainTagAlign(drivetrainSubsystem, cameraSubsystem);
-  private final DrivetrainTagAlignPIDTunning drivetrainTagAlignPIDTunning = new DrivetrainTagAlignPIDTunning(drivetrainSubsystem, cameraSubsystem);
+  //private final DrivetrainTagAlign drivetrainTagAlign = new DrivetrainTagAlign(drivetrainSubsystem, cameraSubsystem);
+  //private final DrivetrainTagAlignPIDTunning drivetrainTagAlignPIDTunning = new DrivetrainTagAlignPIDTunning(drivetrainSubsystem, cameraSubsystem);
 
 
   public RobotContainer() {
@@ -51,11 +51,14 @@ public class RobotContainer {
   // STICK 1 (Driver)
   // Axis Y: Forward/Back
   // Axis X: Turn
-  // Btn 1: Auto align (AprilTag)
 
   // STICK 2 (Operator)
   // Btn 1: Intake toggle
   // Btn 2: Shooter toggle
+  // Btn 3: Bands toggle
+  // Btn 4: Indexer toggle
+  // D-pad X: Hood control
+  // D-pad Y: Shooter RPM control
 
   private void configureBindings() {
     //Desactivados temporalmente
