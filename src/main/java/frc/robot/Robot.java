@@ -4,17 +4,28 @@
 
 package frc.robot;
 
+import choreo.auto.AutoFactory;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
+  private final DrivetrainSubsystem driveSubsystem = new DrivetrainSubsystem();
+  private final AutoFactory autoFactory;
 
   private final RobotContainer m_robotContainer;
 
   public Robot() {
     m_robotContainer = new RobotContainer();
+    autoFactory = new AutoFactory(
+    driveSubsystem::getPose, // A function that returns the current robot pose
+    driveSubsystem::resetOdometry, // A function that resets the current robot pose to the provided Pose2d
+    driveSubsystem::followTrajectory, // The drive subsystem trajectory follower 
+    true, // If alliance flipping should be enabled 
+    driveSubsystem // The drive subsystem
+    );
   }
 
   @Override

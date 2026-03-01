@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import com.revrobotics.ResetMode;
 import com.revrobotics.PersistMode;
+import com.revrobotics.RelativeEncoder;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkLowLevel.MotorType;
@@ -15,10 +16,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ShooterSubsystem extends SubsystemBase {
 
-    private final SparkMax rightOut = new SparkMax(20, MotorType.kBrushless);
-    private final SparkMax rightIn  = new SparkMax(21, MotorType.kBrushless);
-    private final SparkMax leftOut  = new SparkMax(22, MotorType.kBrushless);
-    private final SparkMax leftIn   = new SparkMax(23, MotorType.kBrushless);
+    private final SparkMax rightOut = new SparkMax(4, MotorType.kBrushless);
+    private final SparkMax rightIn  = new SparkMax(2, MotorType.kBrushless);
+    private final SparkMax leftOut  = new SparkMax(3, MotorType.kBrushless);
+    private final SparkMax leftIn   = new SparkMax(1, MotorType.kBrushless);
 
     private final SparkClosedLoopController controllerRI = rightIn.getClosedLoopController();
     private final SparkClosedLoopController controllerRO = rightOut.getClosedLoopController();
@@ -36,25 +37,30 @@ public class ShooterSubsystem extends SubsystemBase {
     private double kI = 0.0;
     private double kD = 0.0;
 
+    private int targetRPM;
+
     // Config PID reutilizable
     private final SparkMaxConfig pidConfig = new SparkMaxConfig();
 
     public ShooterSubsystem() {
 
         SparkMaxConfig rightOutConfig = new SparkMaxConfig();
-        rightOutConfig.idleMode(IdleMode.kBrake);
+        rightOutConfig.idleMode(IdleMode.kCoast);
+        rightOutConfig.inverted(true);
         rightOut.configure(rightOutConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
         SparkMaxConfig rightInConfig = new SparkMaxConfig();
-        rightInConfig.idleMode(IdleMode.kBrake);
+        rightInConfig.idleMode(IdleMode.kCoast);
         rightIn.configure(rightInConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
         SparkMaxConfig leftOutConfig = new SparkMaxConfig();
-        leftOutConfig.idleMode(IdleMode.kBrake);
+        leftOutConfig.idleMode(IdleMode.kCoast);
+        leftOutConfig.inverted(true);
         leftOut.configure(leftOutConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
         SparkMaxConfig leftInConfig = new SparkMaxConfig();
-        leftInConfig.idleMode(IdleMode.kBrake);
+        leftInConfig.idleMode(IdleMode.kCoast);
+        rightInConfig.inverted(true);
         leftIn.configure(leftInConfig, ResetMode.kResetSafeParameters, PersistMode.kPersistParameters);
 
         rightServo.set(90);
@@ -77,6 +83,13 @@ public class ShooterSubsystem extends SubsystemBase {
         if (newP != kP || newI != kI || newD != kD) {
             setPID(newP, newI, newD);
         }
+
+        final RelativeEncoder encoderRI = rightIn.getEncoder();
+        double currentRPM = encoderRI.getVelocity();
+        System.out.print("Shooter RMP: ");
+        System.out.println(currentRPM);
+        System.out.print("Target RMP: ");
+        System.out.println(targetRPM);
     }
 
     public void setPID(double kP, double kI, double kD) {
@@ -101,6 +114,7 @@ public class ShooterSubsystem extends SubsystemBase {
         controllerRO.setSetpoint(RPM, ControlType.kVelocity);
         controllerLI.setSetpoint(RPM, ControlType.kVelocity);
         controllerLO.setSetpoint(RPM, ControlType.kVelocity);
+        targetRPM = RPM;
     }
 
     public void setAllPower(double power) {
@@ -110,8 +124,8 @@ public class ShooterSubsystem extends SubsystemBase {
         leftOut.set(power);
     }
 
-    public void setServos(int angle) {
-        rightServo.set(angle);
-        leftServo.set(angle);
+    public void setServos(double state) {
+        rightServo.set(state);
+        leftServo.set(state);
     }
 }
